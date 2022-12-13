@@ -1,0 +1,98 @@
+{
+  "Name": "02 Download portfolio export",
+  "CreationDate": "2022-12-13",
+  "Commands": [
+    {
+      "Command": "csvRead",
+      "Target": "OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${!csvReadStatus} == \"OK\"",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Call subroutine ",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "open",
+      "Target": "https://live.onefile.co.uk/learner/export.aspx?UserID=${!COL1}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "onDownload",
+      "Target": "${!COL1} Portfolio.ZIP",
+      "Value": " (wait for download to complete:) true",
+      "Description": "Add USERID prefix to the filename"
+    },
+    {
+      "Command": "click",
+      "Target": "id=ctl00_cp1_Export_DownloadFile",
+      "Value": "",
+      "Targets": [
+        "id=ctl00_cp1_Export_DownloadFile",
+        "name=ctl00$cp1$Export$DownloadFile",
+        "xpath=//*[@id=\"ctl00_cp1_Export_DownloadFile\"]",
+        "xpath=//input[@id='ctl00_cp1_Export_DownloadFile']",
+        "xpath=//li[2]/div/input[2]",
+        "css=#ctl00_cp1_Export_DownloadFile"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${!csvReadLineNumber})+1",
+      "Value": "!csvReadLineNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Reading CSV line No.  ${!csvReadLineNumber} ",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "csvRead",
+      "Target": "ReadCSVTestData.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
