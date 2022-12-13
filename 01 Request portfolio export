@@ -1,0 +1,146 @@
+{
+  "Name": "01 Request portfolio export",
+  "CreationDate": "2022-12-13",
+  "Commands": [
+    {
+      "Command": "csvRead",
+      "Target": "OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${!csvReadStatus} == \"OK\"",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Call subroutine ",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "open",
+      "Target": "https://live.onefile.co.uk/users/learner_licence.aspx?UserID=${!COL1}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
+      "Value": "",
+      "Targets": [
+        "linkText=TABBOTT21",
+        "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
+        "xpath=//div/table/tbody/tr[2]/td[2]/a",
+        "css=#ctl00_cp1_23_EpisodeGrid > tbody > tr:nth-child(2) > td:nth-child(2) > a"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "linkText=Portfolio",
+      "Value": "",
+      "Targets": [
+        "linkText=Portfolio",
+        "xpath=//*[@id=\"content_pane\"]/div[2]/ul/li[9]/a",
+        "xpath=//div[2]/ul/li[9]/a",
+        "css=#content_pane > div.tabstrip > ul > li:nth-child(9) > a"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=Manage",
+      "Value": "",
+      "Targets": [
+        "id=Manage",
+        "xpath=//*[@id=\"Manage\"]",
+        "xpath=//button[@id='Manage']",
+        "xpath=//button[2]",
+        "css=#Manage"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "xpath=//*[@id=\"Manage_Content\"]/div/a[2]/img",
+      "Value": "",
+      "Targets": [
+        "xpath=//*[@id=\"Manage_Content\"]/div/a[2]/img",
+        "xpath=//div[2]/div/a[2]/img",
+        "css=#Manage_Content > div > a:nth-child(2) > img"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=ctl00_cp1_Export_RequestDownload",
+      "Value": "",
+      "Targets": [
+        "id=ctl00_cp1_Export_RequestDownload",
+        "name=ctl00$cp1$Export$RequestDownload",
+        "xpath=//*[@id=\"ctl00_cp1_Export_RequestDownload\"]",
+        "xpath=//input[@id='ctl00_cp1_Export_RequestDownload']",
+        "xpath=//li[2]/div/input",
+        "css=#ctl00_cp1_Export_RequestDownload"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "",
+      "Target": "End subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${!csvReadLineNumber})+1",
+      "Value": "!csvReadLineNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Reading CSV line No.  ${!csvReadLineNumber} ",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "csvRead",
+      "Target": "ReadCSVTestData.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
