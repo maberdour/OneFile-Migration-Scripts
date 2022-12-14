@@ -1,0 +1,120 @@
+{
+  "Name": "05 Download Notes files",
+  "CreationDate": "2022-12-14",
+  "Commands": [
+    {
+      "Command": "comment",
+      "Target": "csvRead // OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "open // https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL1}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "open",
+      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=1492455",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "1",
+      "Value": "loopSuccess",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "1",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "(${loopSuccess} > 0)",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=div > div.margintopsmall > div.notedescriptionarea.inline-block > ul > li:nth-child(${loopCount}) > fieldset > a > div.attachment-download",
+      "Value": "",
+      "Description": "Not looking for next element, keeps finding the first one"
+    },
+    {
+      "Command": "comment",
+      "Target": "Did DOCX, MSG, ZIP, PDF. Fails at MP4 file",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Start Video or Image download process",
+      "Value": "",
+      "Description": "Not looking for next element, keeps finding the first one"
+    },
+    {
+      "Command": "comment",
+      "Target": "click // css=div > div.margintopsmall > div.notedescriptionarea.inline-block > ul > li:nth-child(8) > fieldset > a > div.attachment-download",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "click // linkText=Download",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "click // id=ctl00_cp1_ouPreview_Close",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "End Video or Image download process",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if_v2",
+      "Target": "!${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "0",
+      "Value": "loopSuccess",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${loopCount}) + 1;",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Loop count: ${loopCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
