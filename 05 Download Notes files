@@ -1,6 +1,6 @@
 {
   "Name": "05 Download Notes files",
-  "CreationDate": "2022-12-14",
+  "CreationDate": "2022-12-19",
   "Commands": [
     {
       "Command": "comment",
@@ -40,9 +40,9 @@
     },
     {
       "Command": "click",
-      "Target": "css=div > div.margintopsmall > div.notedescriptionarea.inline-block > ul > li:nth-child(${loopCount}) > fieldset > a > div.attachment-download",
+      "Target": "xpath=(/descendant:: fieldset/a/div[@class=\"attachment-download\"])[${loopCount}]",
       "Value": "",
-      "Description": "Not looking for next element, keeps finding the first one"
+      "Description": ""
     },
     {
       "Command": "comment",
