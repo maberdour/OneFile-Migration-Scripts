@@ -1,0 +1,35 @@
+css=li > fieldset > a > div.attachment-download:nth-child(${loopCount}) // worked on first 2 downloads, then went to 3rd download of next List set
+css=li > fieldset > a[position()=2] > div.attachment-download   // not working
+css= div > ul > li > fieldset > a    // works fine
+css= div > ul > li > fieldset > a[2] // doesn't work
+xpath=//li/fieldset/a[1]            // works fine
+xpath=//li/fieldset/a[2]            // doesn't work 
+
+xpath=//li/fieldset/a/div[1]   // works fine, gets first download  
+xpath=//li/fieldset/a/div[2]   // works fine, gets first download again though
+xpath=//li/fieldset/a/div[3]   // doesn't work at all
+xpath=//fieldset/a/div         // works fine, gets first download  
+xpath=//fieldset/a/div[2]      // works fine, gets first download again though
+xpath=//fieldset/a/div[3]      // doesn't work at all
+
+xpath=//div/ul/li/fieldset/a   //works fine
+xpath=//div/ul/li/fieldset[2]/a //doesn't work
+xpath=//div/ul/li[3]/fieldset/a //works but fails on 3rd item, launches Thomas Abbott Project.zip
+
+xpath=//div/ul/li/fieldset/a   // works fine, gets first download  
+xpath=//div/ul/li/fieldset/a[2]   //   
+xpath=//div/ul/li/fieldset/a[position()=2]  // doesn't work at all
+
+xpath=//div[contains(concat(' ',normalize-space(@class),' '),' attachment-download ')]   // works fine on first download
+xpath=//div[2][contains(concat(' ',normalize-space(@class),' '),' attachment-download ')]   // [2] won't find second download, order selectors only within a single List
+
+xpath=//div[2][@class="attachment-download"]   // finds the right div but [2] won't find second iteration, order selectors only within a single List
+
+xpath=//a[@class="file-detail has-filename-tip"]   // works fine on first download
+xpath=//a[2][@class="file-detail has-filename-tip"]   //[2] won't find second download, order selectors only within a single List
+
+xpath=//div[contains(@class, 'attachment-download')]   // works fine on first download
+xpath=//div[2][contains(@class, 'attachment-download')]   // [2] won't find second download, order selectors only within a single List
+xpath=//div[contains(@class, 'attachment-download')][2]   // [2] won't find second download, order selectors only within a single List
+
+(/descendant:: fieldset/a/div[@class="attachment-download"])[2]
