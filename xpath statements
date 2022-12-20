@@ -1,3 +1,7 @@
+//WORKED
+(/descendant:: fieldset/a/div[@class="attachment-download"])[2]
+
+//TESTING
 css=li > fieldset > a > div.attachment-download:nth-child(${loopCount}) // worked on first 2 downloads, then went to 3rd download of next List set
 css=li > fieldset > a[position()=2] > div.attachment-download   // not working
 css= div > ul > li > fieldset > a    // works fine
@@ -32,4 +36,4 @@ xpath=//div[contains(@class, 'attachment-download')]   // works fine on first do
 xpath=//div[2][contains(@class, 'attachment-download')]   // [2] won't find second download, order selectors only within a single List
 xpath=//div[contains(@class, 'attachment-download')][2]   // [2] won't find second download, order selectors only within a single List
 
-(/descendant:: fieldset/a/div[@class="attachment-download"])[2]
+
