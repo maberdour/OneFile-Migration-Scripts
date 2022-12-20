@@ -1,6 +1,10 @@
 //WORKED
 (/descendant:: fieldset/a/div[@class="attachment-download"])[2]
 
+xpath=//input[contains(concat(' ',normalize-space(@id),' '),'Preview_Close')]
+
+xpath=//(/descendant:: fieldset[contains(concat(' ',normalize-space(@class),' '),' attached-file ')]/a)
+
 //TESTING
 css=li > fieldset > a > div.attachment-download:nth-child(${loopCount}) // worked on first 2 downloads, then went to 3rd download of next List set
 css=li > fieldset > a[position()=2] > div.attachment-download   // not working
