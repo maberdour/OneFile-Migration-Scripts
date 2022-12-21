@@ -1,10 +1,46 @@
 {
-  "Name": "05 Download Notes files-1",
+  "Name": "05 Download Notes",
   "CreationDate": "2022-12-21",
   "Commands": [
     {
+      "Command": "csvRead",
+      "Target": "OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${!csvReadStatus} == \"OK\"",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Begin downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "open",
-      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=1492455",
+      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL1}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "open // https://live.onefile.co.uk/note/notes.aspx?UserID=1983584",
       "Value": "",
       "Description": ""
     },
@@ -166,7 +202,7 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype MSG, PDF",
+      "Target": "Find other filetypes ",
       "Value": "",
       "Description": ""
     },
@@ -220,7 +256,43 @@
     },
     {
       "Command": "echo",
-      "Target": "Finished MSG, PDF downloads",
+      "Target": "Finished other downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${!csvReadLineNumber})+1",
+      "Value": "!csvReadLineNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Reading CSV line No.  ${!csvReadLineNumber} ",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "csvRead",
+      "Target": "OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
       "Value": "",
       "Description": ""
     }
