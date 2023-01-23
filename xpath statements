@@ -1,3 +1,9 @@
+(/descendant:: div[@class="file-card"])
+
+//div[contains(concat(' ',normalize-space(@class),' '),' file-card ') or contains(concat(' ',normalize-space(@class),' '),' display-card ')]
+
+
+
 //WORKED
 Video downloads
 xpath=(/descendant:: fieldset[@class="attached-file filetype-mp4"]/a)
@@ -5,7 +11,7 @@ xpath=//input[contains(concat(' ',normalize-space(@id),' '),'Preview_Close')]
 
 Image downloads:
 xpath=(/descendant:: fieldset[
-contains(concat(' ',normalize-space(@class),' '),' attached-file ') and 
+contains(concat(' ',normalize-space(@class),' '),' attached-file ') or 
 contains(concat(' ',normalize-space(@style),' '),'background-image')
 ]/a)
 
