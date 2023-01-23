@@ -126,7 +126,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "ReadCSVTestData.csv",
+      "Target": "OneFile-Test-Import.csv",
       "Value": "",
       "Description": ""
     },
