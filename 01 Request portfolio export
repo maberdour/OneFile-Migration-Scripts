@@ -1,6 +1,6 @@
 {
   "Name": "01 Request portfolio export",
-  "CreationDate": "2022-12-13",
+  "CreationDate": "2023-1-30",
   "Commands": [
     {
       "Command": "csvRead",
@@ -83,6 +83,20 @@
         "xpath=//*[@id=\"Manage_Content\"]/div/a[2]/img",
         "xpath=//div[2]/div/a[2]/img",
         "css=#Manage_Content > div > a:nth-child(2) > img"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "check",
+      "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
+      "Value": "",
+      "Targets": [
+        "id=ctl00_cp1_Export_RequestDownload",
+        "name=ctl00$cp1$Export$RequestDownload",
+        "xpath=//*[@id=\"ctl00_cp1_Export_RequestDownload\"]",
+        "xpath=//input[@id='ctl00_cp1_Export_RequestDownload']",
+        "xpath=//li[2]/div/input",
+        "css=#ctl00_cp1_Export_RequestDownload"
       ],
       "Description": ""
     },
