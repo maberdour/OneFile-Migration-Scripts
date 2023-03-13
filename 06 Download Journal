@@ -1,5 +1,5 @@
 {
-  "Name": "06c Download Journal - Test3",
+  "Name": "06c Download Journal",
   "CreationDate": "2023-3-13",
   "Commands": [
     {
@@ -40,7 +40,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div)[${loopCount}]",
+      "Target": " xpath= (//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
