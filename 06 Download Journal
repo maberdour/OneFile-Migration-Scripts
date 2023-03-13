@@ -1,0 +1,78 @@
+{
+  "Name": "06c Download Journal - Test3",
+  "CreationDate": "2023-3-13",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "https://learning.onefile.co.uk/?user=1418787",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "500",
+      "Value": "filesCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Number of downloadable files = ${filesCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "1",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "(${loopCount} <= ${filesCount})",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Loop number: ${loopCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div)[${loopCount}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "onError",
+      "Target": "#goto",
+      "Value": "Finished",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${loopCount}) + 1;",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "Finished",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Finished downloads",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
