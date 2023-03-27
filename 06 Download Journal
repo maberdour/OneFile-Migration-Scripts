@@ -1,10 +1,10 @@
 {
-  "Name": "06c Download Journal",
-  "CreationDate": "2023-3-13",
+  "Name": "06 Download Journal",
+  "CreationDate": "2023-3-27",
   "Commands": [
     {
       "Command": "open",
-      "Target": "https://learning.onefile.co.uk/?user=1418787",
+      "Target": "https://learning.onefile.co.uk/?user=1492455",
       "Value": "",
       "Description": ""
     },
@@ -71,6 +71,36 @@
     {
       "Command": "echo",
       "Target": "Finished downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "bringBrowserToForeground",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_CTRL+KEY_S}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "Journal",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_ENTER}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Finished screenshot",
       "Value": "",
       "Description": ""
     }
