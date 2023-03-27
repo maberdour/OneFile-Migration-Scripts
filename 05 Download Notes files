@@ -1,10 +1,10 @@
 {
   "Name": "05 Download Notes",
-  "CreationDate": "2023-1-16",
+  "CreationDate": "2023-3-27",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "OneFile-Test-Import.csv",
+      "Target": "onefile-test-import-local.csv",
       "Value": "",
       "Description": ""
     },
@@ -35,12 +35,6 @@
     {
       "Command": "open",
       "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL1}",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "comment",
-      "Target": "open // https://live.onefile.co.uk/note/notes.aspx?UserID=1983584",
       "Value": "",
       "Description": ""
     },
@@ -84,6 +78,12 @@
       "Command": "click",
       "Target": "xpath=(/descendant:: fieldset[@class=\"attached-file filetype-mp4\"]/a)[${loopCount}]",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "300",
+      "Value": "!TIMEOUT_WAIT",
       "Description": ""
     },
     {
@@ -280,7 +280,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "OneFile-Test-Import.csv",
+      "Target": "onefile-test-import-local.csv",
       "Value": "",
       "Description": ""
     },
