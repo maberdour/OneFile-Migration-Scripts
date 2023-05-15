@@ -1,10 +1,10 @@
 {
   "Name": "05 Download Notes",
-  "CreationDate": "2023-3-27",
+  "CreationDate": "2023-5-15",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "onefile-test-import-local.csv",
+      "Target": "Onefile List - ULN 40Users.csv",
       "Value": "",
       "Description": ""
     },
@@ -27,8 +27,50 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "3",
+      "Value": "!timeout_wait",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
+      "Value": "Access Denied",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access denied",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access granted",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "comment",
-      "Target": "Begin downloads",
+      "Target": "Begin downloads subroutine",
       "Value": "",
       "Description": ""
     },
@@ -255,8 +297,14 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Finished other downloads",
+      "Command": "comment",
+      "Target": "End downloads subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "NextRow",
       "Value": "",
       "Description": ""
     },
@@ -280,7 +328,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "onefile-test-import-local.csv",
+      "Target": "Onefile List - ULN 40Users.csv",
       "Value": "",
       "Description": ""
     },
@@ -288,6 +336,12 @@
       "Command": "store",
       "Target": "false",
       "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
       "Description": ""
     },
     {
