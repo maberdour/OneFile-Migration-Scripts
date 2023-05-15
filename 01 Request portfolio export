@@ -1,5 +1,5 @@
 {
-  "Name": "01 Request portfolio export",
+  "Name": "02 Download portfolio export",
   "CreationDate": "2023-5-15",
   "Commands": [
     {
@@ -15,7 +15,7 @@
       "Description": ""
     },
     {
-      "Command": "while",
+      "Command": "while_v2",
       "Target": "${!csvReadStatus} == \"OK\"",
       "Value": "",
       "Description": ""
@@ -34,14 +34,20 @@
     },
     {
       "Command": "open",
-      "Target": "https://live.onefile.co.uk/users/learner_licence.aspx?UserID=${!COL1}",
+      "Target": "https://live.onefile.co.uk/learner/export.aspx?UserID=${!COL1}",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "3",
+      "Value": "!timeout_wait",
       "Description": ""
     },
     {
       "Command": "verifyElementPresent",
       "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access denied",
+      "Value": "Access Denied",
       "Description": ""
     },
     {
@@ -75,39 +81,33 @@
       "Description": ""
     },
     {
-      "Command": "clickAndWait",
-      "Target": "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "linkText=Portfolio",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "click",
-      "Target": "id=Manage",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "xpath=//*[@id=\"Manage_Content\"]/div/a[2]/img",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "check",
       "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
       "Value": "",
       "Description": ""
     },
     {
+      "Command": "onDownload",
+      "Target": "${!COL2}_${!COL1}_Portfolio.ZIP",
+      "Value": " (wait for download to complete:) true",
+      "Description": "Add ULN and Episode ID prefix to the filename"
+    },
+    {
       "Command": "click",
-      "Target": "id=ctl00_cp1_Export_RequestDownload",
+      "Target": "id=ctl00_cp1_Export_DownloadFile",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL2}_${!COL1}_Portfolio.ZIP",
+      "Value": "DownloadName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "Powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\uivision\\powershell\\unzip-archive.ps1\" \"${DownloadName}\"",
       "Description": ""
     },
     {
