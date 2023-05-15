@@ -27,6 +27,12 @@
       "Description": ""
     },
     {
+      "Command": "open",
+      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL1}",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "store",
       "Target": "3",
       "Value": "!timeout_wait",
@@ -71,12 +77,6 @@
     {
       "Command": "comment",
       "Target": "Begin downloads subroutine",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "open",
-      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL1}",
       "Value": "",
       "Description": ""
     },
