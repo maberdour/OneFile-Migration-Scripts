@@ -1,10 +1,10 @@
 {
   "Name": "02 Download portfolio export",
-  "CreationDate": "2022-12-13",
+  "CreationDate": "2023-5-15",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "OneFile-Test-Import.csv",
+      "Target": "Onefile List - ULN 40Users.csv",
       "Value": "",
       "Description": ""
     },
@@ -39,23 +39,87 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "3",
+      "Value": "!timeout_wait",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
+      "Value": "Access Denied",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access denied",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access granted",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "check",
+      "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "onDownload",
-      "Target": "${!COL1} Portfolio.ZIP",
+      "Target": "${!COL2}_${!COL1}_Portfolio.ZIP",
       "Value": " (wait for download to complete:) true",
-      "Description": "Add USERID prefix to the filename"
+      "Description": "Add ULN and Episode ID prefix to the filename"
     },
     {
       "Command": "click",
       "Target": "id=ctl00_cp1_Export_DownloadFile",
       "Value": "",
-      "Targets": [
-        "id=ctl00_cp1_Export_DownloadFile",
-        "name=ctl00$cp1$Export$DownloadFile",
-        "xpath=//*[@id=\"ctl00_cp1_Export_DownloadFile\"]",
-        "xpath=//input[@id='ctl00_cp1_Export_DownloadFile']",
-        "xpath=//li[2]/div/input[2]",
-        "css=#ctl00_cp1_Export_DownloadFile"
-      ],
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL2}_${!COL1}_Portfolio.ZIP",
+      "Value": "DownloadName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "Powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\uivision\\powershell\\unzip-archive.ps1\" \"${DownloadName}\"",
+      "Description": ""
+    },
+    {
+      "Command": "",
+      "Target": "End subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "NextRow",
+      "Value": "",
       "Description": ""
     },
     {
@@ -78,7 +142,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "ReadCSVTestData.csv",
+      "Target": "Onefile List - ULN 40Users.csv",
       "Value": "",
       "Description": ""
     },
@@ -86,6 +150,12 @@
       "Command": "store",
       "Target": "false",
       "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
       "Description": ""
     },
     {
