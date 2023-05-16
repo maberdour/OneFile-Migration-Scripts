@@ -1,8 +1,9 @@
-(/descendant:: div[@class="file-card"])
+//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1]
+
+//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2]
+//div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1]
 
 //div[contains(concat(' ',normalize-space(@class),' '),' file-card ') or contains(concat(' ',normalize-space(@class),' '),' display-card ')]
-
-
 
 //WORKED
 Video downloads
