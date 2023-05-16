@@ -1,10 +1,82 @@
 {
   "Name": "06 Download Journal",
-  "CreationDate": "2023-3-27",
+  "CreationDate": "2023-5-16",
   "Commands": [
     {
+      "Command": "csvRead",
+      "Target": "OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while",
+      "Target": "${!csvReadStatus} == \"OK\"",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "open",
-      "Target": "https://learning.onefile.co.uk/?user=1492455",
+      "Target": "https://learning.onefile.co.uk/?user=${!COL1}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "3",
+      "Value": "!timeout_wait",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
+      "Value": "Access Denied",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access denied",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access granted",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Start downloads subroutine",
       "Value": "",
       "Description": ""
     },
@@ -12,11 +84,17 @@
       "Command": "store",
       "Target": "500",
       "Value": "filesCount",
-      "Description": ""
+      "Description": "cannot do a filecount on page load as it doesn't detect all files, so set a high number instead"
     },
     {
       "Command": "echo",
       "Target": "Number of downloadable files = ${filesCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Start file downloads",
       "Value": "",
       "Description": ""
     },
@@ -45,6 +123,12 @@
       "Description": ""
     },
     {
+      "Command": "XType",
+      "Target": "${KEY_ESC}",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "onError",
       "Target": "#goto",
       "Value": "Finished",
@@ -63,6 +147,12 @@
       "Description": ""
     },
     {
+      "Command": "comment",
+      "Target": "End file downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "label",
       "Target": "Finished",
       "Value": "",
@@ -71,6 +161,18 @@
     {
       "Command": "echo",
       "Target": "Finished downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Finish download subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Start save-page subroutine",
       "Value": "",
       "Description": ""
     },
@@ -101,6 +203,60 @@
     {
       "Command": "echo",
       "Target": "Finished screenshot",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Finish save-page subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${!csvReadLineNumber})+1",
+      "Value": "!csvReadLineNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Reading CSV line No.  ${!csvReadLineNumber} ",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "csvRead",
+      "Target": "OneFile-Test-Import.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
       "Value": "",
       "Description": ""
     }
