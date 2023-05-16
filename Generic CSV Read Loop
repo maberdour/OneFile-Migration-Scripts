@@ -1,0 +1,75 @@
+    {
+      "Command": "csvRead",
+      "Target": "Onefile List - ULN 40Users.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while",
+      "Target": "${!csvReadStatus} == \"OK\"",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Call subroutine ",
+      "Value": "",
+      "Description": ""
+    },
+    
+    DO STUFF HERE
+    
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${!csvReadLineNumber})+1",
+      "Value": "!csvReadLineNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Reading CSV line No.  ${!csvReadLineNumber} ",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "csvRead",
+      "Target": "Onefile List - ULN 40Users.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
