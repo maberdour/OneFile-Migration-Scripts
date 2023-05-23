@@ -1,6 +1,6 @@
 {
   "Name": "06 Download Journal",
-  "CreationDate": "2023-5-16",
+  "CreationDate": "2023-5-23",
   "Commands": [
     {
       "Command": "csvRead",
