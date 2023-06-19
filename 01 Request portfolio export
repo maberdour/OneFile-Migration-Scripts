@@ -4,7 +4,7 @@
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-06-07-v1-PRIORITY.csv",
+      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY.csv",
       "Value": "",
       "Description": ""
     },
@@ -69,32 +69,14 @@
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "7",
-      "Value": "!timeout_wait",
-      "Description": ""
-    },
-    {
       "Command": "verifyElementPresent",
       "Target": "xpath=//h1[@class=\"form_panel_title\"]",
       "Value": "Access denied",
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Status is ${!statusOK}",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "if",
       "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Access denied",
       "Value": "",
       "Description": ""
     },
@@ -117,12 +99,6 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Access granted",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "clickAndWait",
       "Target": "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
       "Value": "",
@@ -141,32 +117,14 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Status is ${!statusOK}",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "store",
       "Target": "true",
       "Value": "!statusOK",
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Status is ${!statusOK}",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "verifyElementPresent",
       "Target": "xpath=//a[contains(@href,'/learner/export.aspx')]",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Status is ${!statusOK}",
       "Value": "",
       "Description": ""
     },
@@ -195,12 +153,6 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Download requested",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "store",
       "Target": "Download requested",
       "Value": "!csvLine",
@@ -215,12 +167,6 @@
     {
       "Command": "end",
       "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "No download found",
       "Value": "",
       "Description": ""
     },
@@ -262,7 +208,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-06-07-v1-PRIORITY.csv",
+      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY.csv",
       "Value": "",
       "Description": ""
     },
