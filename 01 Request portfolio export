@@ -27,12 +27,6 @@
       "Description": ""
     },
     {
-      "Command": "comment",
-      "Target": "Call subroutine ",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "open",
       "Target": "https://live.onefile.co.uk/users/learner_licence.aspx?UserID=${!COL1}",
       "Value": "",
@@ -87,6 +81,12 @@
       "Description": ""
     },
     {
+      "Command": "echo",
+      "Target": "Status is ${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "if",
       "Target": "${!statusOK}==true",
       "Value": "",
@@ -123,12 +123,6 @@
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "Access granted",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
       "Command": "clickAndWait",
       "Target": "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
       "Value": "",
@@ -147,8 +141,44 @@
       "Description": ""
     },
     {
+      "Command": "echo",
+      "Target": "Status is ${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!statusOK",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status is ${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//a[contains(@href,'/learner/export.aspx')]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status is ${!statusOK}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "clickAndWait",
-      "Target": "xpath=//*[@id=\"Manage_Content\"]/div/a[2]/img",
+      "Target": "xpath=//a[contains(@href, '/learner/export.aspx')]",
       "Value": "",
       "Description": ""
     },
@@ -165,9 +195,39 @@
       "Description": ""
     },
     {
-      "Command": "",
-      "Target": "End subroutine",
+      "Command": "echo",
+      "Target": "Download requested",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "Download requested",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "No download found",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "No download found",
+      "Value": "!csvLine",
       "Description": ""
     },
     {
@@ -215,7 +275,7 @@
     {
       "Command": "store",
       "Target": "true",
-      "Value": "!StatusOK",
+      "Value": "!statusOK",
       "Description": ""
     },
     {
