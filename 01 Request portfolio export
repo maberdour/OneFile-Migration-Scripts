@@ -1,10 +1,10 @@
 {
   "Name": "01 Request portfolio export",
-  "CreationDate": "2023-6-19",
+  "CreationDate": "2023-6-20",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY.csv",
+      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY-part2.csv",
       "Value": "",
       "Description": ""
     },
@@ -106,12 +106,12 @@
     },
     {
       "Command": "clickAndWait",
-      "Target": "linkText=Portfolio",
+      "Target": "xpath=//div[@class=\"tabstrip\"]/*/li/a[contains(@href,'/learner/portfolio.aspx')]",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "click",
+      "Command": "clickAndWait",
       "Target": "id=Manage",
       "Value": "",
       "Description": ""
@@ -208,7 +208,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY.csv",
+      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY-part2.csv",
       "Value": "",
       "Description": ""
     },
