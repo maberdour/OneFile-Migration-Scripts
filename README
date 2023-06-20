@@ -3,7 +3,7 @@ ONEFILE DATA EXTRACTION SCRIPTS
 These scripts allow you to extract all your learner records from the ONEFILE apprenticeships ePortfolio system. 
 The data extract for each learner includes the learner portfolio as a ZIP file and the Notes and Journal entries as HTML files. 
 The scripts are intended to be used as part of a system decommissioning process when you wish to store the records on your own secure file storage rather than pay an annual fee to ONEFILE in order for your compliance team to be able to access a read-only archive of learner records.
-The scipts are designed to run in the freely available UI.Vision RPA tool, a browser plugin that enables task automation in a web browser. 
+The scipts are designed to run in the freely available UI.Vision RPA tool, a browser plugin that enables task automation in a web browser.  
 
 HOW TO SETUP THE PROJECT
 Install UI.Vision browser plugin
