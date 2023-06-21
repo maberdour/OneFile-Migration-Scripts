@@ -1,10 +1,10 @@
 {
-  "Name": "01 Request portfolio export",
-  "CreationDate": "2023-5-24",
+  "Name": "02 Download portfolio export-TEST",
+  "CreationDate": "2023-6-21",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "Onefile-Test-Users.csv",
+      "Target": "01-Download-Portfolio-v1-PRIORITY - 2 Users.csv",
       "Value": "",
       "Description": ""
     },
@@ -15,7 +15,7 @@
       "Description": ""
     },
     {
-      "Command": "while",
+      "Command": "while_v2",
       "Target": "${!csvReadStatus} == \"OK\"",
       "Value": "",
       "Description": ""
@@ -28,13 +28,13 @@
     },
     {
       "Command": "comment",
-      "Target": "Call subroutine ",
+      "Target": "Portfolio download process starts ",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "open",
-      "Target": "https://live.onefile.co.uk/users/learner_licence.aspx?UserID=${!COL1}",
+      "Target": "https://live.onefile.co.uk/learner/export.aspx?UserID=${!COL2}",
       "Value": "",
       "Description": ""
     },
@@ -47,12 +47,6 @@
     {
       "Command": "store",
       "Target": "${timestamp}",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "${!COL1}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -76,14 +70,20 @@
     },
     {
       "Command": "store",
-      "Target": "7",
+      "Target": "${!COL5}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "3",
       "Value": "!timeout_wait",
       "Description": ""
     },
     {
       "Command": "verifyElementPresent",
       "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access denied",
+      "Value": "Access Denied",
       "Description": ""
     },
     {
@@ -123,52 +123,64 @@
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "Access granted",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "linkText=Portfolio",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "click",
-      "Target": "id=Manage",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "xpath=//*[@id=\"Manage_Content\"]/div/a[2]/img",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "check",
       "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
       "Value": "",
       "Description": ""
     },
     {
+      "Command": "onDownload",
+      "Target": "${!COL3}_${!COL4}_${!COL5}_${!COL2}_Portfolio.ZIP",
+      "Value": "true",
+      "Description": "ULN - Lastname - Firstname - Episode ID"
+    },
+    {
       "Command": "click",
-      "Target": "id=ctl00_cp1_Export_RequestDownload",
+      "Target": "id=ctl00_cp1_Export_DownloadFile",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "",
-      "Target": "End subroutine",
-      "Value": "",
+      "Command": "store",
+      "Target": "Downloaded portfolio",
+      "Value": "!csvLine",
       "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL3}_${!COL4}_${!COL5}_${!COL2}_Portfolio.ZIP",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL3}_${!COL4}_${!COL5}_${!COL2}",
+      "Value": "FolderName",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL3}_${!COL4}_${!COL5}_${!COL2}_Portfolio",
+      "Value": "ZipFileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\CreateFolderScript.ps1\" ${FolderName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveZipScript.ps1\" ${FolderName} ${ZipFileName}",
+      "Description": "Move ZIP"
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\ExtractZipScript.ps1\" ${FolderName} ${ZipFileName}",
+      "Description": "Extract ZIP"
     },
     {
       "Command": "label",
@@ -177,8 +189,14 @@
       "Description": ""
     },
     {
+      "Command": "comment",
+      "Target": "Portfolio download process ends ",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "csvSave",
-      "Target": "01-Request-Portfolio-Validation.csv",
+      "Target": "02-Download-Portfolio-Validation.csv",
       "Value": "",
       "Description": ""
     },
@@ -202,7 +220,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Onefile-Test-Users.csv",
+      "Target": "01-Download-Portfolio-v1-PRIORITY - 2 Users.csv",
       "Value": "",
       "Description": ""
     },
