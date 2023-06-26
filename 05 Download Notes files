@@ -1,10 +1,10 @@
 {
-  "Name": "05 Download Notes",
-  "CreationDate": "2023-5-23",
+  "Name": "03 Download Notes-TEST",
+  "CreationDate": "2023-6-26",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "Onefile List - ULN 40Users.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part1.csv",
       "Value": "",
       "Description": ""
     },
@@ -28,14 +28,56 @@
     },
     {
       "Command": "open",
-      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL1}",
+      "Target": "https://live.onefile.co.uk/note/notes.aspx?UserID=${!COL2}",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "var d = new Date(); m = d.getFullYear()+\"-\"+(d.getMonth()+1)+\"-\"+ d.getDate()+\" \"+ d.getHours()+\":\" + d.getMinutes() + \":\" + d.getSeconds(); return m",
+      "Value": "timestamp",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${timestamp}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL2}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL3}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL4}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL5}",
+      "Value": "!csvLine",
       "Description": ""
     },
     {
       "Command": "store",
       "Target": "3",
       "Value": "!timeout_wait",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Check for Access Denied, if found then update CSV and move to next row",
+      "Value": "",
       "Description": ""
     },
     {
@@ -57,6 +99,12 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "Access denied",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
       "Command": "gotoLabel",
       "Target": "NextRow",
       "Value": "",
@@ -73,6 +121,30 @@
       "Target": "Access granted",
       "Value": "",
       "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Create Notes folder",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Value": "FolderName",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Notes\"",
+      "Value": "SubFolderName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\CreateNotesFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Description": "Create folder"
     },
     {
       "Command": "comment",
@@ -145,6 +217,24 @@
       "Target": "xpath=//input[contains(concat(' ',normalize-space(@id),' '),'Preview_Close')]",
       "Value": "",
       "Description": "could also use title=\"Close\" e.g. //*[@title=\"Close\"]"
+    },
+    {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
     },
     {
       "Command": "executeScript_Sandbox",
@@ -225,6 +315,24 @@
       "Description": ""
     },
     {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
+    },
+    {
       "Command": "executeScript_Sandbox",
       "Target": "return Number(${loopCount}) + 1;",
       "Value": "loopCount",
@@ -279,10 +387,34 @@
       "Description": ""
     },
     {
+      "Command": "onDownload",
+      "Target": "",
+      "Value": "true",
+      "Description": "WAITS for download to complete"
+    },
+    {
       "Command": "click",
       "Target": "xpath=(/descendant:: fieldset[ contains(concat(' ',normalize-space(@class),' '),' attached-file ') and  ( contains(concat(' ',normalize-space(@class),' '),' filetype-pdf ') or contains(concat(' ',normalize-space(@class),' '),' filetype-msg ') or contains(concat(' ',normalize-space(@class),' '),' filetype-docx ') or contains(concat(' ',normalize-space(@class),' '),' filetype-xlsx ') or contains(concat(' ',normalize-space(@class),' '),' filetype-zip ') ) ]/a)[${loopCount}]",
       "Value": "",
       "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
     },
     {
       "Command": "executeScript_Sandbox",
@@ -309,6 +441,18 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "Notes downloaded",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "03-Download-Notes-Validation.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "executeScript_Sandbox",
       "Target": "return Number(${!csvReadLineNumber})+1",
       "Value": "!csvReadLineNumber",
@@ -328,7 +472,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Onefile List - ULN 40Users.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part1.csv",
       "Value": "",
       "Description": ""
     },
