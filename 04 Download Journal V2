@@ -1,1 +1,372 @@
-
+{
+  "Name": "04 Download Journal-V2-TEST",
+  "CreationDate": "2023-6-27",
+  "Commands": [
+    {
+      "Command": "csvRead",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-2users.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "while",
+      "Target": "${!csvReadStatus} == \"OK\"",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "status = ${!csvReadStatus}, line = ${!csvReadLineNumber}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "open",
+      "Target": "https://learning.onefile.co.uk/?user=${!COL2}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "var d = new Date(); m = d.getFullYear()+\"-\"+(d.getMonth()+1)+\"-\"+ d.getDate()+\" \"+ d.getHours()+\":\" + d.getMinutes() + \":\" + d.getSeconds(); return m",
+      "Value": "timestamp",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${timestamp}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL2}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL3}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL4}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!COL5}",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "3",
+      "Value": "!timeout_wait",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
+      "Value": "Access Denied",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access denied",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "Access denied",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Access granted",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Create Journal folder",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Value": "FolderName",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Journal\"",
+      "Value": "SubFolderName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "comment",
+      "Target": "Start downloads subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "500",
+      "Value": "filesCount",
+      "Description": "cannot do a filecount on page load as it doesn't detect all files, so set a high number instead"
+    },
+    {
+      "Command": "echo",
+      "Target": "Number of downloadable files = ${filesCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Start file downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "1",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "(${loopCount} <= ${filesCount})",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Loop number: ${loopCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "onDownload",
+      "Target": "",
+      "Value": "true",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": " xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1])[${loopCount}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_ESC}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "onError",
+      "Target": "#goto",
+      "Value": "Finished",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${loopCount}) + 1;",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "End file downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "Finished",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Finished downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Finish download subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Start save-page subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "bringBrowserToForeground",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_CTRL+KEY_S}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "Journal",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_ENTER}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Finished screenshot",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveHTML.ps1\" ${FolderName} ${SubFolderName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "comment",
+      "Target": "Finish save-page subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "Journal saved",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "csvSave",
+      "Target": "03-Download-Notes-Validation.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${!csvReadLineNumber})+1",
+      "Value": "!csvReadLineNumber",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Reading CSV line No.  ${!csvReadLineNumber} ",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "csvRead",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-2users.csv",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "false",
+      "Value": "!errorIgnore",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
