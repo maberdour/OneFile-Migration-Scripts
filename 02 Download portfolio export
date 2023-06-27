@@ -1,10 +1,10 @@
 {
-  "Name": "02 Download portfolio export-TEST",
-  "CreationDate": "2023-6-22",
+  "Name": "02 Download portfolio export",
+  "CreationDate": "2023-6-27",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part3.csv",
       "Value": "",
       "Description": ""
     },
@@ -123,6 +123,24 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "id=ctl00_cp1_Export_DownloadFile",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "check",
       "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
       "Value": "",
@@ -167,20 +185,44 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\CreateFolderScript.ps1\" ${FolderName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Portfolio_CreateFolderScript.ps1\" ${FolderName}",
       "Description": "Create folder"
     },
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveZipScript.ps1\" ${FolderName} ${ZipFileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Portfolio_MoveZipScript.ps1\" ${FolderName} ${ZipFileName}",
       "Description": "Move ZIP"
     },
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\ExtractZipScript.ps1\" ${FolderName} ${ZipFileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Portfolio_ExtractZipScript.ps1\" ${FolderName} ${ZipFileName}",
       "Description": "Extract ZIP"
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Portfolio_DeleteZipScript.ps1\" ${FolderName} ${ZipFileName}",
+      "Description": "Extract ZIP"
+    },
+    {
+      "Command": "else",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "Downloaded not available",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "label",
@@ -220,7 +262,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part3.csv",
       "Value": "",
       "Description": ""
     },
