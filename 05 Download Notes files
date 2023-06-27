@@ -1,10 +1,10 @@
 {
-  "Name": "03 Download Notes-TEST",
-  "CreationDate": "2023-6-26",
+  "Name": "03 Download Notes-1",
+  "CreationDate": "2023-6-27",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part1.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part2.csv",
       "Value": "",
       "Description": ""
     },
@@ -143,7 +143,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\CreateNotesFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
       "Description": "Create folder"
     },
     {
@@ -233,7 +233,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
     },
     {
@@ -329,7 +329,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
     },
     {
@@ -413,7 +413,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
     },
     {
@@ -472,7 +472,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part1.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part2.csv",
       "Value": "",
       "Description": ""
     },
