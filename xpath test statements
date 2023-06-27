@@ -1,5 +1,23 @@
-xpath=(//div[@class="attachment-download"])[${loopCount}]
+FOLDER MOVE LOOP
 
+Echo Loopcount (EXISTING)
+on Download True (NEW) 
+ {
+      "Command": "onDownload",
+      "Target": "",
+      "Value": "true",
+      "Description": ""
+    },
+
+click xpath=... (EXISTING)
+store LastFileName FileName (NEW)
+=Xrun and Wait... (NEW)
+execute Sandbox (EXISTING)
+
+
+XPATH STATEMENTS
+
+xpath=(//div[@class="attachment-download"])[${loopCount}]
 
 //div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1]
 
