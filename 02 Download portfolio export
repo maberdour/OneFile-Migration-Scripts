@@ -1,10 +1,10 @@
 {
   "Name": "02 Download portfolio export",
-  "CreationDate": "2023-6-27",
+  "CreationDate": "2023-6-29",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part3.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
       "Value": "",
       "Description": ""
     },
@@ -262,7 +262,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part3.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
       "Value": "",
       "Description": ""
     },
