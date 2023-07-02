@@ -1,10 +1,10 @@
 {
-  "Name": "04 Download Journal-V2",
-  "CreationDate": "2023-6-29",
+  "Name": "04 Download Journal-V2-LIVE",
+  "CreationDate": "2023-7-2",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-2users.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
       "Value": "",
       "Description": ""
     },
@@ -15,7 +15,7 @@
       "Description": ""
     },
     {
-      "Command": "while",
+      "Command": "while_v2",
       "Target": "${!csvReadStatus} == \"OK\"",
       "Value": "",
       "Description": ""
@@ -75,6 +75,12 @@
       "Description": ""
     },
     {
+      "Command": "comment",
+      "Target": "Check for Access Denied, if found then update CSV and move to next row",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "verifyElementPresent",
       "Target": "xpath=//h1[@class=\"form_panel_title\"]",
       "Value": "Access Denied",
@@ -118,7 +124,7 @@
     },
     {
       "Command": "comment",
-      "Target": "Create Journal folder",
+      "Target": "Create Notes folder",
       "Value": "",
       "Description": ""
     },
@@ -142,13 +148,43 @@
     },
     {
       "Command": "comment",
-      "Target": "Start save-page subroutine",
-      "Value": "Pink",
+      "Target": "Page-Down to end of page",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "bringBrowserToForeground",
+      "Target": "",
+      "Value": "",
       "Description": ""
     },
     {
       "Command": "XClick",
       "Target": "xpath=//div[@id=\"content\"]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
       "Value": "",
       "Description": ""
     },
@@ -231,10 +267,10 @@
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "500",
+      "Command": "storeXpathCount",
+      "Target": " xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1])",
       "Value": "filesCount",
-      "Description": "cannot do a filecount on page load as it doesn't detect all files, so set a high number instead"
+      "Description": ""
     },
     {
       "Command": "echo",
@@ -243,9 +279,9 @@
       "Description": ""
     },
     {
-      "Command": "comment",
-      "Target": "Start file downloads",
-      "Value": "",
+      "Command": "store",
+      "Target": "${filesCount}",
+      "Value": "!csvLine",
       "Description": ""
     },
     {
@@ -267,6 +303,12 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "300",
+      "Value": "!TIMEOUT_WAIT",
+      "Description": ""
+    },
+    {
       "Command": "onDownload",
       "Target": "",
       "Value": "true",
@@ -282,12 +324,6 @@
       "Command": "XType",
       "Target": "${KEY_ESC}",
       "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "onError",
-      "Target": "#goto",
-      "Value": "Finished",
       "Description": ""
     },
     {
@@ -322,7 +358,7 @@
     },
     {
       "Command": "comment",
-      "Target": "End file downloads",
+      "Target": "End of downloads",
       "Value": "",
       "Description": ""
     },
@@ -346,7 +382,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "03-Download-Journal-Validation.csv",
+      "Target": "04-Download-Journal-Validation.csv",
       "Value": "",
       "Description": ""
     },
@@ -370,7 +406,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-2users.csv",
+      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
       "Value": "",
       "Description": ""
     },
