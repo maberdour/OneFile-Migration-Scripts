@@ -394,7 +394,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg')]])[${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.png']])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
