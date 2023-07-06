@@ -1,10 +1,10 @@
 {
-  "Name": "01 Request portfolio export",
-  "CreationDate": "2023-6-20",
+  "Name": "01 Request portfolio export-v1",
+  "CreationDate": "2023-7-6",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY-part2.csv",
+      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
       "Value": "",
       "Description": ""
     },
@@ -28,7 +28,7 @@
     },
     {
       "Command": "open",
-      "Target": "https://live.onefile.co.uk/users/learner_licence.aspx?UserID=${!COL1}",
+      "Target": "https://live.onefile.co.uk/learner/export.aspx?UserID=${!COL2}",
       "Value": "",
       "Description": ""
     },
@@ -99,48 +99,6 @@
       "Description": ""
     },
     {
-      "Command": "clickAndWait",
-      "Target": "xpath=//*[@id=\"ctl00_cp1_23_EpisodeGrid\"]/tbody/tr[2]/td[2]/a",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "xpath=//div[@class=\"tabstrip\"]/*/li/a[contains(@href,'/learner/portfolio.aspx')]",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "id=Manage",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "true",
-      "Value": "!statusOK",
-      "Description": ""
-    },
-    {
-      "Command": "verifyElementPresent",
-      "Target": "xpath=//a[contains(@href,'/learner/export.aspx')]",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "if",
-      "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "clickAndWait",
-      "Target": "xpath=//a[contains(@href, '/learner/export.aspx')]",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "check",
       "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
       "Value": "",
@@ -156,30 +114,6 @@
       "Command": "store",
       "Target": "Download requested",
       "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "No download found",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "label",
-      "Target": "NextRow",
-      "Value": "",
       "Description": ""
     },
     {
@@ -208,7 +142,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-06-07-v2-PRIORITY-part2.csv",
+      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
       "Value": "",
       "Description": ""
     },
