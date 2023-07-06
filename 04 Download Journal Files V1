@@ -1,10 +1,10 @@
 {
   "Name": "04 Download Journal-V1",
-  "CreationDate": "2023-6-27",
+  "CreationDate": "2023-7-6",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY-2users.csv",
+      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
       "Value": "",
       "Description": ""
     },
@@ -117,26 +117,158 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Value": "FolderName",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Journal_Files\"",
+      "Value": "SubFolderName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "comment",
+      "Target": "Page-Down to end of page",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "bringBrowserToForeground",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XClick",
+      "Target": "xpath=//div[@id=\"content\"]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_END}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "comment",
       "Target": "Start downloads subroutine",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "500",
-      "Value": "filesCount",
-      "Description": "cannot do a filecount on page load as it doesn't detect all files, so set a high number instead"
-    },
-    {
-      "Command": "echo",
-      "Target": "Number of downloadable files = ${filesCount}",
+      "Command": "comment",
+      "Target": "Find filetype MP4",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "comment",
-      "Target": "Start file downloads",
+      "Command": "storeXpathCount",
+      "Target": "xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.mp4')]]",
+      "Value": "filesCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Number of downloadable files = ${filesCount}",
       "Value": "",
       "Description": ""
     },
@@ -147,7 +279,7 @@
       "Description": ""
     },
     {
-      "Command": "while_v2",
+      "Command": "while",
       "Target": "(${loopCount} <= ${filesCount})",
       "Value": "",
       "Description": ""
@@ -160,21 +292,231 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//div[@class=\"attachment-download\"])[${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.mp4')]])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "XType",
-      "Target": "${KEY_ESC}",
+      "Command": "store",
+      "Target": "300",
+      "Value": "!TIMEOUT_WAIT",
+      "Description": ""
+    },
+    {
+      "Command": "onDownload",
+      "Target": "",
+      "Value": "true",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "linkText=Download",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "onError",
-      "Target": "#goto",
-      "Value": "Finished",
+      "Command": "click",
+      "Target": "xpath=//input[contains(concat(' ',normalize-space(@id),' '),'Preview_Close')]",
+      "Value": "",
+      "Description": "could also use title=\"Close\" e.g. //*[@title=\"Close\"]"
+    },
+    {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
       "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${loopCount}) + 1;",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Finished MPG downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Find filetype JPG",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.png')]]",
+      "Value": "filesCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Number of downloadable files = ${filesCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "1",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "while",
+      "Target": "(${loopCount} <= ${filesCount})",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Loop number: ${loopCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg')]])[${loopCount}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "onDownload",
+      "Target": "",
+      "Value": "true",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "linkText=Download",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=//input[contains(concat(' ',normalize-space(@id),' '),'Preview_Close')]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return Number(${loopCount}) + 1;",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Finished JPG downloads",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "comment",
+      "Target": "Find other filetypes ",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "storeXpathCount",
+      "Target": "xpath= //fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg')])]",
+      "Value": "filesCount",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Number of downloadable files = ${filesCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "1",
+      "Value": "loopCount",
+      "Description": ""
+    },
+    {
+      "Command": "while",
+      "Target": "(${loopCount} <= ${filesCount})",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Loop number: ${loopCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "onDownload",
+      "Target": "",
+      "Value": "true",
+      "Description": "WAITS for download to complete"
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=( //fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg')])])[${loopCount}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "File name is ${!Last_Downloaded_File_Name}",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!Last_Downloaded_File_Name}\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": "Create folder"
     },
     {
       "Command": "executeScript_Sandbox",
@@ -190,80 +532,20 @@
     },
     {
       "Command": "comment",
-      "Target": "End file downloads",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "label",
-      "Target": "Finished",
+      "Target": "End of downloads",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "echo",
-      "Target": "Downloads successful",
+      "Target": "Journal file downloads completed",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "Downloads successful",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "comment",
-      "Target": "Finish download subroutine",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "comment",
-      "Target": "Start save-page subroutine",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "bringBrowserToForeground",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "XType",
-      "Target": "${KEY_CTRL+KEY_S}",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "XType",
-      "Target": "${!COL2}_Journal",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "XType",
-      "Target": "${KEY_ENTER}",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Screenshot successful",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "Screenshot successful",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "comment",
-      "Target": "Finish save-page subroutine",
-      "Value": "",
+      "Target": "Journal file downloads completed",
+      "Value": "!csvLine",
       "Description": ""
     },
     {
@@ -274,7 +556,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "03-Download-Notes-Validation.csv",
+      "Target": "04-Download-Journal-Validation.csv",
       "Value": "",
       "Description": ""
     },
@@ -298,7 +580,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY-2users.csv",
+      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
       "Value": "",
       "Description": ""
     },
