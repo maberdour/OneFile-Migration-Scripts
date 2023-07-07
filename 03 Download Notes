@@ -1,10 +1,10 @@
 {
   "Name": "03 Download Notes",
-  "CreationDate": "2023-6-29",
+  "CreationDate": "2023-7-7",
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part4.csv",
+      "Target": "Onefile Full Export 2023-07-06 V2 - 2020.csv",
       "Value": "",
       "Description": ""
     },
@@ -46,7 +46,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL2}",
+      "Target": "${!COL1}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -64,7 +64,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL5}",
+      "Target": "${!COL2}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -72,12 +72,6 @@
       "Command": "store",
       "Target": "3",
       "Value": "!timeout_wait",
-      "Description": ""
-    },
-    {
-      "Command": "comment",
-      "Target": "Check for Access Denied, if found then update CSV and move to next row",
-      "Value": "",
       "Description": ""
     },
     {
@@ -93,14 +87,44 @@
       "Description": ""
     },
     {
-      "Command": "echo",
+      "Command": "store",
       "Target": "Access denied",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "Access denied",
+      "Target": "true",
+      "Value": "!StatusOK",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//div[@id=\"ctl00_cp1_lblNone\"]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "No notes have been created",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -130,13 +154,13 @@
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}\"",
       "Value": "FolderName",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Notes\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}_Notes\"",
       "Value": "SubFolderName",
       "Description": ""
     },
@@ -160,7 +184,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=(/descendant:: fieldset[@class=\"attached-file filetype-mp4\"]/a)",
+      "Target": "xpath=//span[contains(text(), 'MP4')]",
       "Value": "filesCount",
       "Description": ""
     },
@@ -190,7 +214,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(/descendant:: fieldset[@class=\"attached-file filetype-mp4\"]/a)[${loopCount}]",
+      "Target": "xpath=(//span[contains(text(), 'MP4')])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -262,7 +286,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=(/descendant:: fieldset[contains(concat(' ',normalize-space(@class),' '),' attached-file ') and contains(concat(' ',normalize-space(@style),' '),'background-image')]/a)",
+      "Target": "xpath=//span[text()='.jpg' or text()='.jpeg']",
       "Value": "filesCount",
       "Description": ""
     },
@@ -292,7 +316,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(/descendant:: fieldset[ contains(concat(' ',normalize-space(@class),' '),' attached-file ') and  contains(concat(' ',normalize-space(@style),' '),'background-image') ]/a)[${loopCount}]",
+      "Target": "xpath=(//span[text()='.jpg' or text()='.jpeg'])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -429,6 +453,12 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "Notes downloaded",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
       "Command": "comment",
       "Target": "End downloads subroutine",
       "Value": "",
@@ -438,12 +468,6 @@
       "Command": "label",
       "Target": "NextRow",
       "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "Notes downloaded",
-      "Value": "!csvLine",
       "Description": ""
     },
     {
@@ -472,7 +496,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part4.csv",
+      "Target": "Onefile Full Export 2023-07-06 V2 - 2020.csv",
       "Value": "",
       "Description": ""
     },
