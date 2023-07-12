@@ -1,3 +1,43 @@
+FIND FILES
+
+Find filetype MP4, MP3
+
+xpath=
+(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  
+//a[descendant::span[
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or 
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')
+]])
+[${loopCount}]
+
+
+Find filetype JPG, JPEG, PNG, GIF
+
+xpath=
+(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]yyyy//a[descendant::span[
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg') or
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')
+]])
+[${loopCount}]
+
+Find other filetypes 
+
+xpath=
+(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  
+//a[not(descendant::span[
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or 
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or 
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or 
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or 
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or 
+contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')
+])])
+[${loopCount}]
+
+
+
 FOLDER MOVE LOOP
 
 Echo Loopcount (EXISTING)
