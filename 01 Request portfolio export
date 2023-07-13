@@ -1,10 +1,16 @@
 {
-  "Name": "01 Request portfolio export-v1",
-  "CreationDate": "2023-7-6",
+  "Name": "01 Request portfolio export",
+  "CreationDate": "2023-7-13",
   "Commands": [
     {
+      "Command": "store",
+      "Target": "fast",
+      "Value": "!replayspeed",
+      "Description": ""
+    },
+    {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
+      "Target": "All Learners 2023-07-06 V1 - 2020",
       "Value": "",
       "Description": ""
     },
@@ -69,36 +75,6 @@
       "Description": ""
     },
     {
-      "Command": "verifyElementPresent",
-      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access denied",
-      "Description": ""
-    },
-    {
-      "Command": "if",
-      "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "Access denied",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "check",
       "Target": "xpath=//input[@id=\"ctl00_cp1_Export_IncludeAttachmentsCheckbox\"]",
       "Value": "",
@@ -142,7 +118,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
+      "Target": "All Learners 2023-07-06 V1 - 2020",
       "Value": "",
       "Description": ""
     },
