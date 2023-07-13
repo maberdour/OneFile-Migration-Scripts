@@ -1,10 +1,16 @@
 {
-  "Name": "03 Download Notes",
-  "CreationDate": "2023-7-7",
+  "Name": "03 Download Notes-TEST",
+  "CreationDate": "2023-7-13",
   "Commands": [
     {
+      "Command": "store",
+      "Target": "fast",
+      "Value": "!replayspeed",
+      "Description": ""
+    },
+    {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-07-06 V2 - 2020.csv",
+      "Target": "All Learners 2023-07-06 V2 - 2021.csv",
       "Value": "",
       "Description": ""
     },
@@ -70,48 +76,12 @@
     },
     {
       "Command": "store",
-      "Target": "3",
-      "Value": "!timeout_wait",
-      "Description": ""
-    },
-    {
-      "Command": "verifyElementPresent",
-      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access Denied",
-      "Description": ""
-    },
-    {
-      "Command": "if",
-      "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "Access denied",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
       "Target": "true",
       "Value": "!StatusOK",
       "Description": ""
     },
     {
-      "Command": "verifyElementPresent",
+      "Command": "verifyElementNotPresent",
       "Target": "xpath=//div[@id=\"ctl00_cp1_lblNone\"]",
       "Value": "",
       "Description": ""
@@ -119,30 +89,6 @@
     {
       "Command": "if",
       "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "No notes have been created",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Access granted",
       "Value": "",
       "Description": ""
     },
@@ -178,13 +124,13 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype MP4",
+      "Target": "Find filetype MP4, MP3",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=//span[contains(text(), 'MP4')]",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3') ]])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -214,7 +160,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//span[contains(text(), 'MP4')])[${loopCount}]",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3') ]]) [${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -228,6 +174,12 @@
       "Command": "onDownload",
       "Target": "",
       "Value": "true",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
       "Description": ""
     },
     {
@@ -280,13 +232,13 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype JPG",
+      "Target": "Find filetype JPG, JPEG, PNG, GIF",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=//span[text()='.jpg' or text()='.jpeg']",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ]])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -316,7 +268,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//span[text()='.jpg' or text()='.jpeg'])[${loopCount}]",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ]]) [${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -324,6 +276,12 @@
       "Command": "onDownload",
       "Target": "",
       "Value": "true",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
       "Description": ""
     },
     {
@@ -382,7 +340,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=(/descendant:: fieldset[ contains(concat(' ',normalize-space(@class),' '),' attached-file ') and  ( contains(concat(' ',normalize-space(@class),' '),' filetype-pdf ') or contains(concat(' ',normalize-space(@class),' '),' filetype-msg ') or contains(concat(' ',normalize-space(@class),' '),' filetype-docx ') or contains(concat(' ',normalize-space(@class),' '),' filetype-xlsx ') or contains(concat(' ',normalize-space(@class),' '),' filetype-zip ') ) ]/a)",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]   //a[not(descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ])])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -417,8 +375,14 @@
       "Description": "WAITS for download to complete"
     },
     {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": "keeps flaking out here, tried a 2000ms pause to see if it helps "
+    },
+    {
       "Command": "click",
-      "Target": "xpath=(/descendant:: fieldset[ contains(concat(' ',normalize-space(@class),' '),' attached-file ') and  ( contains(concat(' ',normalize-space(@class),' '),' filetype-pdf ') or contains(concat(' ',normalize-space(@class),' '),' filetype-msg ') or contains(concat(' ',normalize-space(@class),' '),' filetype-docx ') or contains(concat(' ',normalize-space(@class),' '),' filetype-xlsx ') or contains(concat(' ',normalize-space(@class),' '),' filetype-zip ') ) ]/a)[${loopCount}]",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]   //a[not(descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ])]) [${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -465,6 +429,24 @@
       "Description": ""
     },
     {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "No notes have been created",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
       "Command": "label",
       "Target": "NextRow",
       "Value": "",
@@ -472,7 +454,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "03-Download-Notes-Validation.csv",
+      "Target": "Validation-03-Download-Notes.csv",
       "Value": "",
       "Description": ""
     },
@@ -496,7 +478,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Onefile Full Export 2023-07-06 V2 - 2020.csv",
+      "Target": "All Learners 2023-07-06 V2 - 2021.csv",
       "Value": "",
       "Description": ""
     },
