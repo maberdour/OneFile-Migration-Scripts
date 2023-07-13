@@ -1,10 +1,16 @@
 {
   "Name": "02 Download portfolio export",
-  "CreationDate": "2023-6-29",
+  "CreationDate": "2023-7-13",
   "Commands": [
     {
+      "Command": "store",
+      "Target": "fast",
+      "Value": "!replayspeed",
+      "Description": ""
+    },
+    {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
+      "Target": "APL V2 NA.csv",
       "Value": "",
       "Description": ""
     },
@@ -52,7 +58,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL2}",
+      "Target": "${!COL1}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -70,7 +76,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL5}",
+      "Target": "${!COL2}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -78,48 +84,6 @@
       "Command": "store",
       "Target": "3",
       "Value": "!timeout_wait",
-      "Description": ""
-    },
-    {
-      "Command": "verifyElementPresent",
-      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access Denied",
-      "Description": ""
-    },
-    {
-      "Command": "if",
-      "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Access denied",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "Access denied",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Access granted",
-      "Value": "",
       "Description": ""
     },
     {
@@ -148,7 +112,7 @@
     },
     {
       "Command": "onDownload",
-      "Target": "${!COL3}_${!COL4}_${!COL5}_${!COL2}_Portfolio.ZIP",
+      "Target": "${!COL1}_${!COL3}_${!COL4}_${!COL2}_Portfolio.ZIP",
       "Value": "true",
       "Description": "ULN - Lastname - Firstname - Episode ID"
     },
@@ -166,19 +130,19 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL3}_${!COL4}_${!COL5}_${!COL2}_Portfolio.ZIP",
+      "Target": "${!COL1}_${!COL3}_${!COL4}_${!COL2}_Portfolio.ZIP",
       "Value": "!csvLine",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}\"",
       "Value": "FolderName",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Portfolio\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}_Portfolio\"",
       "Value": "ZipFileName",
       "Description": ""
     },
@@ -201,8 +165,8 @@
       "Description": "Extract ZIP"
     },
     {
-      "Command": "XRunAndWait",
-      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Command": "comment",
+      "Target": "XRunAndWait // C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
       "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Portfolio_DeleteZipScript.ps1\" ${FolderName} ${ZipFileName}",
       "Description": "Extract ZIP"
     },
@@ -214,19 +178,13 @@
     },
     {
       "Command": "store",
-      "Target": "Downloaded not available",
+      "Target": "Download not available",
       "Value": "!csvLine",
       "Description": ""
     },
     {
       "Command": "end",
       "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "label",
-      "Target": "NextRow",
       "Value": "",
       "Description": ""
     },
@@ -238,7 +196,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "02-Download-Portfolio-Validation.csv",
+      "Target": "Validation-02-Download-Portfolio.csv",
       "Value": "",
       "Description": ""
     },
@@ -262,7 +220,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
+      "Target": "APL V2 NA.csv",
       "Value": "",
       "Description": ""
     },
