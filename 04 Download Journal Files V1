@@ -1,10 +1,16 @@
 {
   "Name": "04 Download Journal-V1",
-  "CreationDate": "2023-7-6",
+  "CreationDate": "2023-7-13",
   "Commands": [
     {
+      "Command": "store",
+      "Target": "fast",
+      "Value": "!replayspeed",
+      "Description": ""
+    },
+    {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
+      "Target": "Learners-v1-PRIORITY-NoPortfolio.csv",
       "Value": "",
       "Description": ""
     },
@@ -46,7 +52,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL2}",
+      "Target": "${!COL1}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -64,7 +70,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL5}",
+      "Target": "${!COL2}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -87,12 +93,6 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Access denied",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "store",
       "Target": "Access denied",
       "Value": "!csvLine",
@@ -111,20 +111,50 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Access granted",
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
+      "Description": ""
+    },
+    {
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//div[@id=\"ctl00_cp1_Journal_lblNone\"]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==true",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Target": "No journal entries",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}\"",
       "Value": "FolderName",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Journal_Files\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}_Journal_Files\"",
       "Value": "SubFolderName",
       "Description": ""
     },
@@ -256,13 +286,13 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype MP4",
+      "Target": "Find filetype MP4 or MP3",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.mp4')]]",
+      "Target": " xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[descendant::span[contains(text(), '.mp4') or contains(text(), '.mp3')]]",
       "Value": "filesCount",
       "Description": ""
     },
@@ -292,7 +322,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.mp4')]])[${loopCount}]",
+      "Target": "xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[descendant::span[contains(text(), '.mp4') or contains(text(), '.mp3')]] [${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -358,7 +388,7 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype JPG",
+      "Target": "Find filetype JPG, JEG, PNG",
       "Value": "",
       "Description": ""
     },
@@ -394,7 +424,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.png']])[${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.png')]])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -460,7 +490,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath= //fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg')])]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.mp3')])])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -496,7 +526,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=( //fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg')])])[${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.mp3')])])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -537,8 +567,80 @@
       "Description": ""
     },
     {
+      "Command": "comment",
+      "Target": "Start save-page subroutine",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "3000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "bringBrowserToForeground",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XClick",
+      "Target": "xpath=//div[@id=\"content\"]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_CTRL+KEY_S}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${!COL1}_${!COL3}_${!COL4}_${!COL2}_Journal",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "XType",
+      "Target": "${KEY_ENTER}",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "echo",
-      "Target": "Journal file downloads completed",
+      "Target": "File name is ${!COL1}_${!COL3}_${!COL4}_${!COL2}_Journal",
+      "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}_Journal.mhtml\"",
+      "Value": "FileName",
+      "Description": ""
+    },
+    {
+      "Command": "XRunAndWait",
+      "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveHTML.ps1\" ${FolderName} ${FileName}",
+      "Description": "Create folder"
+    },
+    {
+      "Command": "comment",
+      "Target": "Finish save-page subroutine",
       "Value": "",
       "Description": ""
     },
@@ -556,7 +658,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "04-Download-Journal-Validation.csv",
+      "Target": "Validation-04-Download-Journal.csv",
       "Value": "",
       "Description": ""
     },
@@ -580,7 +682,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "01-Download-Portfolio-v1-PRIORITY.csv",
+      "Target": "Learners-v1-PRIORITY-NoPortfolio.csv",
       "Value": "",
       "Description": ""
     },
