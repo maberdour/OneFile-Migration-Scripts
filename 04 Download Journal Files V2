@@ -1,6 +1,6 @@
 {
-  "Name": "04 Download Journal-V2-LIVE",
-  "CreationDate": "2023-7-2",
+  "Name": "04 Download Journal-V2",
+  "CreationDate": "2023-7-13",
   "Commands": [
     {
       "Command": "csvRead",
@@ -46,7 +46,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL2}",
+      "Target": "${!COL1}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -64,7 +64,7 @@
     },
     {
       "Command": "store",
-      "Target": "${!COL5}",
+      "Target": "${!COL2}",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -124,7 +124,7 @@
     },
     {
       "Command": "comment",
-      "Target": "Create Notes folder",
+      "Target": "Create Journal folder",
       "Value": "",
       "Description": ""
     },
