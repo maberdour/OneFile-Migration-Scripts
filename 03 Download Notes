@@ -1,6 +1,6 @@
 {
-  "Name": "03 Download Notes-TEST",
-  "CreationDate": "2023-7-13",
+  "Name": "03 Download Notes",
+  "CreationDate": "2023-8-11",
   "Commands": [
     {
       "Command": "store",
@@ -10,7 +10,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "All Learners 2023-07-06 V2 - 2021.csv",
+      "Target": "V2 2022 All Learners 2023-07-06.csv",
       "Value": "",
       "Description": ""
     },
@@ -81,15 +81,27 @@
       "Description": ""
     },
     {
-      "Command": "verifyElementNotPresent",
+      "Command": "store",
+      "Target": "10",
+      "Value": "!timeout_wait",
+      "Description": "verifyElement randomly times out, increasing timeout_wait to try and fix, then setting it back to 5 again afterwards. "
+    },
+    {
+      "Command": "verifyElementPresent",
       "Target": "xpath=//div[@id=\"ctl00_cp1_lblNone\"]",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "if",
-      "Target": "${!statusOK}==true",
+      "Target": "${!statusOK}==false",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "5",
+      "Value": "!timeout_wait",
       "Description": ""
     },
     {
@@ -113,7 +125,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Notes_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
       "Description": "Create folder"
     },
     {
@@ -124,13 +136,13 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype MP4, MP3",
+      "Target": "Find filetype MP4, MP3, WAV",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3') ]])",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]   //a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.wav') ]])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -160,13 +172,13 @@
     },
     {
       "Command": "click",
-      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3') ]]) [${loopCount}]",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]   //a[descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.wav') ]])  [${loopCount}]",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "300",
+      "Command": "comment",
+      "Target": "store // 300",
       "Value": "!TIMEOUT_WAIT",
       "Description": ""
     },
@@ -180,6 +192,12 @@
       "Command": "pause",
       "Target": "1000",
       "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!runtime}",
+      "Value": "starttime",
       "Description": ""
     },
     {
@@ -201,6 +219,18 @@
       "Description": ""
     },
     {
+      "Command": "executeScript_Sandbox",
+      "Target": "return parseFloat(${!runtime})-parseFloat(${starttime})",
+      "Value": "downloadtime",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Download took ${downloadtime} seconds",
+      "Value": "blue",
+      "Description": ""
+    },
+    {
       "Command": "store",
       "Target": "\"${!Last_Downloaded_File_Name}\"",
       "Value": "FileName",
@@ -209,8 +239,14 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
+    },
+    {
+      "Command": "pause",
+      "Target": "2000",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "executeScript_Sandbox",
@@ -226,7 +262,7 @@
     },
     {
       "Command": "echo",
-      "Target": "Finished MPG downloads",
+      "Target": "Finished MP3, MP4, WAV downloads",
       "Value": "",
       "Description": ""
     },
@@ -285,6 +321,12 @@
       "Description": ""
     },
     {
+      "Command": "store",
+      "Target": "${!runtime}",
+      "Value": "starttime",
+      "Description": ""
+    },
+    {
       "Command": "click",
       "Target": "linkText=Download",
       "Value": "",
@@ -303,6 +345,18 @@
       "Description": ""
     },
     {
+      "Command": "executeScript_Sandbox",
+      "Target": "return parseFloat(${!runtime})-parseFloat(${starttime})",
+      "Value": "downloadtime",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Download took ${downloadtime} seconds",
+      "Value": "blue",
+      "Description": ""
+    },
+    {
       "Command": "store",
       "Target": "\"${!Last_Downloaded_File_Name}\"",
       "Value": "FileName",
@@ -311,8 +365,14 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
+    },
+    {
+      "Command": "pause",
+      "Target": "2000",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "executeScript_Sandbox",
@@ -340,7 +400,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]   //a[not(descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ])])",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]    //a[not(descendant::span[  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.url')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ])])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -381,8 +441,14 @@
       "Description": "keeps flaking out here, tried a 2000ms pause to see if it helps "
     },
     {
+      "Command": "store",
+      "Target": "${!runtime}",
+      "Value": "starttime",
+      "Description": ""
+    },
+    {
       "Command": "click",
-      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]   //a[not(descendant::span[ contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ])]) [${loopCount}]",
+      "Target": "xpath= (//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]    //a[not(descendant::span[  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.url')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or   contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png') ])]) [${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -390,6 +456,18 @@
       "Command": "echo",
       "Target": "File name is ${!Last_Downloaded_File_Name}",
       "Value": "pink",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return parseFloat(${!runtime})-parseFloat(${starttime})",
+      "Value": "downloadtime",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Download took ${downloadtime} seconds",
+      "Value": "blue",
       "Description": ""
     },
     {
@@ -401,8 +479,14 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Notes_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
+    },
+    {
+      "Command": "pause",
+      "Target": "2000",
+      "Value": "",
+      "Description": "keeps flaking out here, tried a 2000ms pause to see if it helps "
     },
     {
       "Command": "executeScript_Sandbox",
@@ -478,7 +562,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "All Learners 2023-07-06 V2 - 2021.csv",
+      "Target": "V2 2022 All Learners 2023-07-06.csv",
       "Value": "",
       "Description": ""
     },
