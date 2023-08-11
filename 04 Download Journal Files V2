@@ -1,10 +1,16 @@
 {
   "Name": "04 Download Journal-V2",
-  "CreationDate": "2023-7-13",
+  "CreationDate": "2023-8-11",
   "Commands": [
     {
+      "Command": "store",
+      "Target": "fast",
+      "Value": "!replayspeed",
+      "Description": ""
+    },
+    {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
+      "Target": "V2 2019 All Learners 2023-07-06.csv",
       "Value": "",
       "Description": ""
     },
@@ -15,7 +21,7 @@
       "Description": ""
     },
     {
-      "Command": "while_v2",
+      "Command": "while",
       "Target": "${!csvReadStatus} == \"OK\"",
       "Value": "",
       "Description": ""
@@ -70,20 +76,14 @@
     },
     {
       "Command": "store",
-      "Target": "3",
-      "Value": "!timeout_wait",
+      "Target": "true",
+      "Value": "!StatusOK",
       "Description": ""
     },
     {
-      "Command": "comment",
-      "Target": "Check for Access Denied, if found then update CSV and move to next row",
+      "Command": "verifyElementNotPresent",
+      "Target": "xpath=//div[@class='no-entry' and contains(text(), 'has not created')]",
       "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "verifyElementPresent",
-      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access Denied",
       "Description": ""
     },
     {
@@ -93,32 +93,26 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Access denied",
+      "Command": "comment",
+      "Target": "Check for empty page",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "Access denied",
-      "Value": "!csvLine",
+      "Target": "true",
+      "Value": "!StatusOK",
       "Description": ""
     },
     {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
+      "Command": "verifyElementPresent",
+      "Target": "xpath=//li[@class='breadcrumb-item active']//span[contains(text(), 'Learning Journal')]",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "echo",
-      "Target": "Access granted",
+      "Command": "if",
+      "Target": "${!statusOK}==true",
       "Value": "",
       "Description": ""
     },
@@ -130,20 +124,20 @@
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}\"",
       "Value": "FolderName",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "\"${!COL3}_${!COL4}_${!COL5}_${!COL2}_Journal\"",
+      "Target": "\"${!COL1}_${!COL3}_${!COL4}_${!COL2}_Journal_Files\"",
       "Value": "SubFolderName",
       "Description": ""
     },
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
       "Description": "Create folder"
     },
     {
@@ -268,7 +262,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": " xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1])",
+      "Target": "xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -297,15 +291,15 @@
       "Description": ""
     },
     {
-      "Command": "echo",
-      "Target": "Loop number: ${loopCount}",
-      "Value": "",
+      "Command": "store",
+      "Target": "true",
+      "Value": "!StatusOK",
       "Description": ""
     },
     {
-      "Command": "store",
-      "Target": "300",
-      "Value": "!TIMEOUT_WAIT",
+      "Command": "echo",
+      "Target": "Loop number: ${loopCount}",
+      "Value": "",
       "Description": ""
     },
     {
@@ -315,8 +309,62 @@
       "Description": ""
     },
     {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "${!runtime}",
+      "Value": "starttime",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorignore ",
+      "Description": ""
+    },
+    {
       "Command": "click",
       "Target": " xpath=(//div[contains(concat(' ',normalize-space(@class),' '),' file-card ')]/div/div[position() <= 2] |  //div[contains(concat(' ',normalize-space(@class),' '),' display-card ')]/div[position() = 1])[${loopCount}]",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "if",
+      "Target": "${!statusOK}==false",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "Attempted download failed on file number ${loopCount}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "bringBrowserToForeground",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "selectWindow",
+      "Target": "tab=0",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextLoop",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
       "Value": "",
       "Description": ""
     },
@@ -333,6 +381,18 @@
       "Description": ""
     },
     {
+      "Command": "executeScript_Sandbox",
+      "Target": "return parseFloat(${!runtime})-parseFloat(${starttime})",
+      "Value": "downloadtime",
+      "Description": ""
+    },
+    {
+      "Command": "echo",
+      "Target": "Download took ${downloadtime} seconds",
+      "Value": "blue",
+      "Description": ""
+    },
+    {
       "Command": "store",
       "Target": "\"${!Last_Downloaded_File_Name}\"",
       "Value": "FileName",
@@ -341,8 +401,20 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
-      "Description": "Create folder"
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Description": ""
+    },
+    {
+      "Command": "label",
+      "Target": "NextLoop",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "pause",
+      "Target": "2000",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "executeScript_Sandbox",
@@ -357,20 +429,44 @@
       "Description": ""
     },
     {
-      "Command": "comment",
-      "Target": "End of downloads",
+      "Command": "store",
+      "Target": "Journal file downloads",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
       "Value": "",
       "Description": ""
     },
     {
-      "Command": "label",
-      "Target": "Finished",
+      "Command": "end",
+      "Target": "",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "store",
-      "Target": "Journal file downloads completed",
+      "Target": "Journal page is blank",
+      "Value": "!csvLine",
+      "Description": ""
+    },
+    {
+      "Command": "gotoLabel",
+      "Target": "NextRow",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "No journal entries have been created",
       "Value": "!csvLine",
       "Description": ""
     },
@@ -382,7 +478,7 @@
     },
     {
       "Command": "csvSave",
-      "Target": "04-Download-Journal-Validation.csv",
+      "Target": "Validation-04-Download-Journal.csv",
       "Value": "",
       "Description": ""
     },
@@ -406,7 +502,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY-Part5.csv",
+      "Target": "V2 2019 All Learners 2023-07-06.csv",
       "Value": "",
       "Description": ""
     },
