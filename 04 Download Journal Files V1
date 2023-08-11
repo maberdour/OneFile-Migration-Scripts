@@ -1,6 +1,6 @@
 {
   "Name": "04 Download Journal-V1",
-  "CreationDate": "2023-7-13",
+  "CreationDate": "2023-8-11",
   "Commands": [
     {
       "Command": "store",
@@ -10,7 +10,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Learners-v1-PRIORITY-NoPortfolio.csv",
+      "Target": "V1 2018 All Learners 2023-07-06 Part 1.csv",
       "Value": "",
       "Description": ""
     },
@@ -81,36 +81,6 @@
       "Description": ""
     },
     {
-      "Command": "verifyElementPresent",
-      "Target": "xpath=//h1[@class=\"form_panel_title\"]",
-      "Value": "Access Denied",
-      "Description": ""
-    },
-    {
-      "Command": "if",
-      "Target": "${!statusOK}==true",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "store",
-      "Target": "Access denied",
-      "Value": "!csvLine",
-      "Description": ""
-    },
-    {
-      "Command": "gotoLabel",
-      "Target": "NextRow",
-      "Value": "",
-      "Description": ""
-    },
-    {
-      "Command": "end",
-      "Target": "",
-      "Value": "",
-      "Description": ""
-    },
-    {
       "Command": "store",
       "Target": "true",
       "Value": "!StatusOK",
@@ -161,7 +131,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
       "Description": "Create folder"
     },
     {
@@ -286,13 +256,13 @@
     },
     {
       "Command": "comment",
-      "Target": "Find filetype MP4 or MP3",
+      "Target": "Find filetype WAV, MP4 or MP3",
       "Value": "",
       "Description": ""
     },
     {
       "Command": "storeXpathCount",
-      "Target": " xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[descendant::span[contains(text(), '.mp4') or contains(text(), '.mp3')]]",
+      "Target": " xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.wav')]])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -322,7 +292,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[descendant::span[contains(text(), '.mp4') or contains(text(), '.mp3')]] [${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.wav')]])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -363,10 +333,22 @@
       "Description": ""
     },
     {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "executeScript_Sandbox",
@@ -382,7 +364,7 @@
     },
     {
       "Command": "echo",
-      "Target": "Finished MPG downloads",
+      "Target": "Finished MP3, MP4, WAV downloads",
       "Value": "",
       "Description": ""
     },
@@ -394,7 +376,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.png')]]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')]])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -424,7 +406,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]//a[descendant::span[contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.png')]])[${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')]])[${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -459,10 +441,22 @@
       "Description": ""
     },
     {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "executeScript_Sandbox",
@@ -490,7 +484,7 @@
     },
     {
       "Command": "storeXpathCount",
-      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.mp3')])])",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[not(descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.url')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.wav') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')])])",
       "Value": "filesCount",
       "Description": ""
     },
@@ -526,7 +520,7 @@
     },
     {
       "Command": "click",
-      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')] //a[not(descendant::span[contains(text(), '.mp4') or contains(text(), '.jpg') or contains(text(), '.jpeg') or contains(text(), '.mp3')])])[${loopCount}]",
+      "Target": "xpath=(//fieldset[contains(concat(' ', normalize-space(@class), ' '), ' attached-file ')]  //a[not(descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.url')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp3')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.mp4') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.wav') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpg')  or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.jpeg') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.gif') or  contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '.png')])]) [${loopCount}]",
       "Value": "",
       "Description": ""
     },
@@ -543,10 +537,22 @@
       "Description": ""
     },
     {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
+    },
+    {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": "Create folder"
+    },
+    {
+      "Command": "pause",
+      "Target": "1000",
+      "Value": "",
+      "Description": ""
     },
     {
       "Command": "executeScript_Sandbox",
@@ -635,7 +641,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveHTML.ps1\" ${FolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_MoveHTML.ps1\" ${FolderName} ${FileName}",
       "Description": "Create folder"
     },
     {
@@ -682,7 +688,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "Learners-v1-PRIORITY-NoPortfolio.csv",
+      "Target": "V1 2018 All Learners 2023-07-06 Part 1.csv",
       "Value": "",
       "Description": ""
     },
