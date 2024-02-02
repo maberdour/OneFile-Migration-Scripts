@@ -2,12 +2,12 @@ ONEFILE DATA EXTRACTION SCRIPTS
 
 These scripts allow you to extract all your learner records from the ONEFILE apprenticeships ePortfolio system. 
 The data extract for each learner includes the learner portfolio as a ZIP file and the Notes and Journal entries as HTML files. 
-The scripts are intended to be used as part of a system decommissioning process when you wish to store the records on your own secure file storage rather than pay an annual fee to ONEFILE in order for your compliance team to be able to access a read-only archive of learner records.
+The scripts are intended to be used as part of a system decommissioning process when you wish to store the records on your own secure file storage rather than pay an annual fee to the vendor in order for your compliance team to be able to access a read-only archive of learner records.
 The scipts are designed to run in the freely available UI.Vision RPA tool, a browser plugin that enables task automation in a web browser.  
 
 HOW TO SETUP THE PROJECT
 Install UI.Vision browser plugin
-Add the XModule extensions
+Add the XModule extension
 Set it to use local storage
 Import the scripts
 
@@ -18,11 +18,7 @@ You will require a CSV file containing the following 4 columns:
 * Col3 – First name
 * Col4 – Last name
 
-If you change the name of this file, it is referenced in each script so you will need to change it in the following places:
-* Request Portfolio lines XX and XX
-* Download Portfolio lines XX and XX
-* Download Notes lines XX and XX
-* Download Journal lines XX and XX
+If you change the name of this file, it is referenced near the start and end of each script so you will need to change it in those places.
 
 SETTING UP YOUR VALIDATION CSV FILES
 Create the following files in the UIVision 'datasources' folder
@@ -30,21 +26,39 @@ Create the following files in the UIVision 'datasources' folder
 02-Download-Portfolio-Validation.csv (this file will log the outcome of each attempted download)
 
 01 REQUEST PORTFOLIO EXPORT
-This script scrolls through the CSV file and reads in each user 'episode' sequentially. In each case it will open the episode page in Onefile and click through the user actions to get to the Request Portfolio page. Once on the target page, it ticks the 'add attachments' checkbox and submits the request to download. The script will then update a separate CSV file with user details (episode id, ULN, first name, last name) and a script status as follows:
+This script scrolls through the CSV file and reads in each user 'episode' sequentially. 
+In each case it will open the episode page in Onefile and click through the user actions to get to the Request Portfolio page. 
+Once on the target page, it ticks the 'add attachments' checkbox and submits the request to download. 
+The script will then update a separate CSV file with user details (episode id, ULN, first name, last name) and a script status as follows:
 * access denied (some users appear to get access denied for various reasons, so by logging these, they can be checked manually later)
 * download requested (a successful outcome)
 * no download available (some users won't have created a portfolio yet for various reasons, so these are logged in order that we know who they are)
 
-Once the portfolio has been requested for each user, a server process runs at Onefile which can take up to 24 hours to generate the download, and it then emails a unique download link to the logged-in user who requested it (ie. YOU!). This means you will get thousands of emails, so you should setup a simple Outlook rule to divert all incoming email from Onefile into a separate mailbox folder. Instructions here, it's dead easy... https://support.microsoft.com/en-us/office/use-inbox-rules-in-outlook-8400435c-f14e-4272-9004-1548bb1848f2
+Once the portfolio has been requested for each user, a server process runs at Onefile which can take up to 24 hours to generate the download.
+It then emails a unique download link to the logged-in user who requested it (ie. YOU!). 
+This means you will get thousands of emails, so you should setup a simple Outlook rule to divert all incoming email from Onefile into a separate mailbox folder. 
+Instructions here, it's dead easy... https://support.microsoft.com/en-us/office/use-inbox-rules-in-outlook-8400435c-f14e-4272-9004-1548bb1848f2
 
 02 DOWNLOAD PORTFOLIO EXPORT
-
+This script scrolls through the CSV file and reads in each user 'episode' sequentially. 
+In each case it will open the Portfolio page in Onefile and click on the Download Portfolio button. 
+It then downloads the ZIP file, moves it into a newly created User folder (using their unique ID, episode ID and LearnerName as the folder name) and unpacks the ZIP file into a Portfolio subfolder.
 
 03 DOWNLOAD NOTES FILES
-
+This script scrolls through the CSV file and reads in each user 'episode' sequentially. 
+In each case it will open the Notes page in Onefile and will download all the notes.
+It creates a Notes subfolder within the Learner folder and adds all downloaded files into it.
 
 04 DOWNLOAD JOURNAL FILES
+This script scrolls through the CSV file and reads in each user 'episode' sequentially. 
+In each case it will open the Journal page in Onefile and will download all the journal entries. It also saves the page as an HTML file.
+It creates a Journal subfolder within the Learner folder and adds all downloaded files into it.
 
 REPORTING ERRORS 
-So look, I'm not a professional developer, more a professional dabbler. I spent many years in the software testing trenches so am happy using browser automation tools and tweaking their output. But I ain't no pro coder. UIVision is really easy to setup scripts by recording a series of browser interactions, and it then creates those scripts as JSON files for you. So the JSON is all automically created. But you then need to fine tune those scripts to do things like run through each line of a CSV file, which of course requires loops. And you may need to improve the XPATH statements to locate exactly the right page element. All of the loops, XPATHs, etc that I wrote can be considered an amateurs effort! Don't criticse my choices, if you can do better than fork this codebase and improve on it, don't whinge about it to me! I'm never going to use these scripts again, so I'm not going to fix them for you :-)
+So look, I'm not a professional developer, more a professional dabbler. I spent many years in the software testing trenches so am happy using browser automation tools and tweaking their output. 
+But I ain't no pro coder. UIVision is really easy to setup scripts by recording a series of browser interactions, and it then creates those scripts as JSON files for you. 
+So the JSON is all automically created. But you then need to fine tune those scripts to do things like run through each line of a CSV file, which of course requires loops. 
+And you may need to improve the XPATH statements to locate exactly the right page element. 
+All of the loops, XPATHs, etc that I wrote can be considered an amateurs effort! 
+Don't criticse my choices, if you can do better then fork this codebase and improve on it, don't whinge about it to me! I'm never going to use these scripts again, so I'm not going to fix them for you :-)
 
