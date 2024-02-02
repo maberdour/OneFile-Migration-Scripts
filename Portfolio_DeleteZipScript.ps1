@@ -7,8 +7,8 @@
 )
 
 
-$ZipFolder = "C:\Users\AberdourM.BG\Downloads\Portfolios\$FolderName"
-$ExtractFolder = "C:\Users\AberdourM.BG\Downloads\Portfolios\$FolderName"
+$ZipFolder = "C:\Path\To\Downloads\Portfolios\$FolderName"
+$ExtractFolder = "C:\Path\To\Downloads\Portfolios\$FolderName"
 
 
 # Construct the path of the zip file
