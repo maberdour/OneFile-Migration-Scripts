@@ -4,7 +4,7 @@
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY.csv",
+      "Target": "CSVFILENAME",
       "Value": "",
       "Description": ""
     },
@@ -125,7 +125,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_CreateTopFolderScript.ps1\" ${FolderName}",
+      "Value": "-executionpolicy bypass -File \"PATH\TO\POWERSHELL\Journal_CreateTopFolderScript.ps1\" ${FolderName}",
       "Description": "Create folder"
     },
     {
@@ -299,7 +299,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\Users\\AberdourM.BG\\OneDrive - Babington\\Documents\\My Docs\\uivision\\powershell\\Journal_MoveHTML.ps1\" ${FolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"PATH\TO\POWERSHELL\Journal_MoveHTML.ps1\" ${FolderName} ${FileName}",
       "Description": "Create folder"
     },
     {
@@ -352,7 +352,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "02-Download-Portfolio-v2-PRIORITY.csv",
+      "Target": "CSVFILENAME",
       "Value": "",
       "Description": ""
     },
