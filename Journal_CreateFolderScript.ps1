@@ -6,7 +6,7 @@
     [string] $SubFolderName
 )
 
-$folderPath = "C:\Users\AberdourM.BG\Downloads\Journals\$FolderName"
+$folderPath = "C:\Path\To\Downloads\Journals\$FolderName"
 
 if (-not (Test-Path -Path $folderPath)) {
     New-Item -ItemType Directory -Path $folderPath | Out-Null
@@ -15,7 +15,7 @@ if (-not (Test-Path -Path $folderPath)) {
     Write-Host "Folder $($folderPath) already exists."
 }
 
-$subFolderPath = "C:\Users\AberdourM.BG\Downloads\Journals\$FolderName\$SubFolderName"
+$subFolderPath = "C:\Path\To\Downloads\Journals\$FolderName\$SubFolderName"
 
 if (-not (Test-Path -Path $subFolderPath)) {
     New-Item -ItemType Directory -Path $subFolderPath | Out-Null
