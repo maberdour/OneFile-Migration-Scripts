@@ -6,8 +6,8 @@
     [string]$ZipFileName
 )
 
-$ZipFolder = "C:\Users\AberdourM.BG\Downloads\Portfolios\$FolderName"
-$ExtractFolder = "C:\Users\AberdourM.BG\Downloads\Portfolios\$FolderName"
+$ZipFolder = "C:\Path\To\Downloads\Portfolios\$FolderName"
+$ExtractFolder = "C:\Path\To\Downloads\Portfolios\$FolderName"
 
 
 # Get the zip file with the specified name in the folder
