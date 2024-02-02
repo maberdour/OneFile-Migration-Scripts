@@ -10,7 +10,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "All Learners 2023-07-06 V1 - 2020",
+      "Target": "CSVFileName",
       "Value": "",
       "Description": ""
     },
