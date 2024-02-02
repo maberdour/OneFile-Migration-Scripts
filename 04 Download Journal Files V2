@@ -10,7 +10,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "V2 2019 All Learners 2023-07-06.csv",
+      "Target": "CSVFILENAME",
       "Value": "",
       "Description": ""
     },
@@ -137,7 +137,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
+      "Value": "-executionpolicy bypass -File \"PATH\TO\POWERSHELL\Journal_CreateFolderScript.ps1\" ${FolderName} ${SubFolderName}",
       "Description": "Create folder"
     },
     {
@@ -401,7 +401,7 @@
     {
       "Command": "XRunAndWait",
       "Target": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "Value": "-executionpolicy bypass -File \"C:\\uivision\\powershell\\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
+      "Value": "-executionpolicy bypass -File \"PATH\TO\POWERSHELL\Journal_MoveFile.ps1\" ${FolderName} ${SubFolderName} ${FileName}",
       "Description": ""
     },
     {
@@ -502,7 +502,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "V2 2019 All Learners 2023-07-06.csv",
+      "Target": "CSVFILENAME",
       "Value": "",
       "Description": ""
     },
