@@ -60,5 +60,6 @@ But I ain't no pro coder. UIVision is really easy to setup scripts by recording 
 So the JSON is all automically created. But you then need to fine tune those scripts to do things like run through each line of a CSV file, which of course requires loops. 
 And you may need to improve the XPATH statements to locate exactly the right page element. 
 All of the loops, XPATHs, etc that I wrote can be considered an amateurs effort! 
-Don't criticse my choices, if you can do better then fork this codebase and improve on it, don't whinge about it to me! I'm never going to use these scripts again, so I'm not going to fix them for you :-)
+Don't criticse my choices, if you can do better then fork this codebase and improve on it, don't whinge about it to me! I'm never going to use these scripts again, so I'm not going to fix them for you.
+But they saved my organisation over £150K in vendor fees, so please enjoy using them :-)
 
