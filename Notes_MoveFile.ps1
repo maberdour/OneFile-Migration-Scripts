@@ -9,8 +9,8 @@
     [string]$FileName
 )
 
-$sourceFolder = "C:\Users\AberdourM.BG\Downloads"
-$destinationFolder = "C:\Users\AberdourM.BG\Downloads\Notes\$FolderName\$SubFolderName"
+$sourceFolder = "C:\Path\To\Downloads"
+$destinationFolder = "C:\Path\To\Downloads\Notes\$FolderName\$SubFolderName"
 
 $sourceFile = Join-Path -Path $sourceFolder -ChildPath "$FileName"
 $destinationFile = Join-Path -Path $destinationFolder -ChildPath "$FileName"
