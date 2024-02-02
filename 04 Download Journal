@@ -4,7 +4,7 @@
   "Commands": [
     {
       "Command": "csvRead",
-      "Target": "OneFile-Test-Import.csv",
+      "Target": "CSVFILENAME",
       "Value": "",
       "Description": ""
     },
@@ -238,7 +238,7 @@
     },
     {
       "Command": "csvRead",
-      "Target": "OneFile-Test-Import.csv",
+      "Target": "CSVFILENAME",
       "Value": "",
       "Description": ""
     },
